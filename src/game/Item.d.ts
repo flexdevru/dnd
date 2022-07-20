@@ -1,0 +1,33 @@
+import * as PIXI from 'pixi.js';
+import { Rectangle } from '../utils/Utils';
+import { Place } from './Place';
+export declare class Item extends PIXI.Sprite {
+    static ITEM_WIDTH: number;
+    static ITEM_HEIGHT: number;
+    data: Object;
+    private text;
+    private index_label;
+    private moved;
+    private delta;
+    orig_pos: PIXI.Point;
+    private over_texture;
+    private placed_texture;
+    private normal_texture;
+    private right_texture;
+    private wrong_texture;
+    fixed: boolean;
+    place: Place | null;
+    constructor(data: Object, pos: PIXI.Point);
+    private onPointerEvent;
+    get rect(): Rectangle;
+    dropTo: (position: PIXI.Point) => void;
+    right: () => void;
+    wrong: () => void;
+    private onFixComplete;
+    return: () => void;
+    private onReturnComplete;
+    enable: () => void;
+    disable: () => void;
+    get correct(): boolean;
+    get type(): number;
+}

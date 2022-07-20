@@ -18,6 +18,7 @@ export declare class AssetsManager extends PIXI.Container {
     private onProgressLoad;
     getResource: (name: string) => PIXI.LoaderResource;
     getObject: (name: string) => Object;
-    getTexture: (name: string) => PIXI.Texture | undefined;
+    getTexture: (name: string) => PIXI.Texture;
     getSprite: (name: string) => PIXI.Sprite;
+    stopPreloader: () => void;
 }

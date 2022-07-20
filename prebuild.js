@@ -107,20 +107,23 @@ function fileList(dir)
   }, []);
 }
 
-var list = fileList(sounds_folder);
-
-for (var i = 0; i < list.length; i++)
+if (fs.existsSync(sounds_folder))
 {
-  var file_path = list[i].split(tmp)[1];
+  var list = fileList(sounds_folder);
 
-  let index = file_path.lastIndexOf('\\');
-  file_name = file_path.substr(index + 1);
+  for (var i = 0; i < list.length; i++)
+  {
+    var file_path = list[i].split(tmp)[1];
 
-  index = file_name.lastIndexOf('.');
-  file_name = file_name.substr(0, index);
+    let index = file_path.lastIndexOf('\\');
+    file_name = file_path.substr(index + 1);
 
-  res[file_name] = file_path.split('\\').join('/');
+    index = file_name.lastIndexOf('.');
+    file_name = file_name.substr(0, index);
 
+    res[file_name] = file_path.split('\\').join('/');
+
+  }
 }
 
 fs.writeFileSync(target, JSON.stringify(res));
@@ -138,7 +141,7 @@ var res = '';
 var list = fileList(configs_folder);
 
 for (var i = 0; i < list.length; i++)
-{ 
+{
   var file_path = list[i].split(tmp)[1];
 
   let index = file_path.lastIndexOf('\\');
@@ -149,7 +152,7 @@ for (var i = 0; i < list.length; i++)
 
   file_path = file_path.split('\\').join('/');
   var file_data = fs.readFileSync(configs_folder + file_path, 'utf8');
-  
+
   file_data = JSON.parse(file_data);
   file_data = JSON.stringify(file_data);
 

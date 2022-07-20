@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js';
 import * as JSON5 from 'json5';
-import { Data } from '../utils/Data';
-import { b64DecodeUnicode } from "../utils/Utils";
-import { Preloader } from '../preloaders/Preloader';
+import {Data} from '../utils/Data';
+import {b64DecodeUnicode} from "../utils/Utils";
+import {Preloader} from '../preloaders/Preloader';
 
 export class AssetsManager extends PIXI.Container {
 	private callback: any;
@@ -47,7 +47,7 @@ export class AssetsManager extends PIXI.Container {
 	}
 
 	private onPreloaderReady = () => {
-		
+
 		let images: Object = this.getObject('images');
 
 		for (let key in images) {
@@ -76,18 +76,22 @@ export class AssetsManager extends PIXI.Container {
 		return JSON5.parse(res);
 	}
 
-	public getTexture = (name: string): PIXI.Texture | undefined => {
+	public getTexture = (name: string): PIXI.Texture => {
 		/*
 		if (this.keys[name] == 'svg') {
 			let texture: PIXI.Texture = PIXI.Texture.fromImage(this.keys[name + '_url']);
 			return texture;
 		}
 		*/
-		return this.loader.resources[name].texture?.clone();
+		return this.loader.resources[name].texture?.clone() as PIXI.Texture;;
 		//return this.loader.resources[name].texture;
 	}
 
 	public getSprite = (name: string): PIXI.Sprite => {
 		return new PIXI.Sprite(this.getTexture(name));
+	}
+
+	public stopPreloader = () => {
+
 	}
 }

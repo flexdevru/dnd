@@ -7,10 +7,16 @@ export declare class StorylineManager {
     get inPlayer(): boolean;
     goNext: () => void;
     goNextSlide: () => void;
-    setVar: (variable: string, value?: any) => void;
-    getVar: (variable: string) => string;
+    setVar: (variable: string, value: string | number) => void;
+    getVar: (variable: string) => string | number;
     getTaskVar: (variable: string) => string;
-    getTaskShowHelpVar: () => string;
-    getTaskCompletedVar: () => string;
-    getTaskStoreVar: () => string;
+    get showHelpValue(): number;
+    get completedValue(): number;
+    get storeValue(): string;
+    set showHelpValue(value: number);
+    set completedValue(value: number);
+    set storeValue(value: string);
+    invoke_hideplayer(): void;
+    invoke_showplayer(): void;
+    invoke_jumptonextslide(): void;
 }

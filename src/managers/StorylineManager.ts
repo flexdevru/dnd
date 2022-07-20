@@ -37,7 +37,8 @@ export class StorylineManager {
 		console.log('goNextSlide invoked');
 	}
 
-	public setVar = (variable: string, value: any = null) => {
+	public setVar = (variable: string, value: string | number) => {
+
 		let currentTime = new Date();
 		if (value == null) value = currentTime.getTime();
 
@@ -45,30 +46,67 @@ export class StorylineManager {
 		console.log(variable, 'set to value:', value);
 	}
 
-	public getVar = ( variable: string ): string => {
+	public getVar = (variable: string): string | number => {
+
 		let value: any = null;
 		if (this.player != null) value = this.player.GetVar(variable);
 		console.log(variable, 'get value:', value);
 		return value;
 	}
 
-	public getTaskVar = ( variable: string ): string => {
-		
-		return window[ variable ];
+	public getTaskVar = (variable: string): string => {
+
+		return window[variable];
 	}
 
-	public getTaskShowHelpVar = (): string => {
+	public get showHelpValue(): number {
 
-		return this.getTaskVar('showhelp_var');
+		return this.getVar(this.getTaskVar('showhelp_var')) as number;
 	}
 
-	public getTaskCompletedVar = (): string => {
+	public get completedValue(): number {
 
-		return this.getTaskVar('completed_var');
+		return this.getVar(this.getTaskVar('completed_var')) as number;
 	}
 
-	public getTaskStoreVar = (): string => {
+	public get storeValue(): string {
 
-		return this.getTaskVar('completed_var');
+		return this.getVar(this.getTaskVar('store_var')) as string;
+	}
+
+	public set showHelpValue(value: number) {
+
+		this.setVar(this.getTaskVar('showhelp_var'), value);
+	}
+
+	public set completedValue(value: number) {
+
+		this.setVar(this.getTaskVar('completed_var'), value);
+	}
+
+	public set storeValue(value: string) {
+
+		this.setVar(this.getTaskVar('store_var'), value);
+	}
+
+	public invoke_hideplayer() {
+
+		let value: number = new Date().getTime();
+		if (this.player != null) this.player.SetVar('invoke_hideplayer', value);
+		console.log('invoke_hideplayer changed');
+	}
+
+	public invoke_showplayer() {
+
+		let value: number = new Date().getTime();
+		if (this.player != null) this.player.SetVar('invoke_showplayer', value);
+		console.log('invoke_showplayer changed');
+	}
+
+	public invoke_jumptonextslide() {
+
+		let value: number = new Date().getTime();
+		if (this.player != null) this.player.SetVar('invoke_jumptonextslide', value);
+		console.log('invoke_jumptonextslide changed');
 	}
 }
