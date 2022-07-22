@@ -1,5 +1,5 @@
 # template
-template for all other applications
+template for dnd
 
 1. yarn install
 2. modify
