@@ -67,7 +67,7 @@ export class Game extends PIXI.Container {
 
 		this.btn_check = new ImageMarginButton('btn_check_answer');
 		this.addChild(this.btn_check).position.set(Application.WIDTH / 2 - this.btn_check.width / 2, 918);
-		this.btn_check.addListener('pointerdown', this.onCheckClick);
+		this.btn_check.addListener('press', this.onCheckClick);
 		this.btn_check.visible = false;
 
 

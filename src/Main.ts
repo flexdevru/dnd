@@ -46,7 +46,7 @@ export class Main extends PIXI.Container {
 
 		this.btn_look = new ImageMarginButton('btn_look');
 		this.addChild(this.btn_look).position.set(Application.WIDTH / 2 - this.btn_look.width / 2, 918);
-		this.btn_look.addListener('pointerdown', this.onLookClick);
+		this.btn_look.addListener('press', this.onLookClick);
 		this.btn_look.visible = false;
 
 		this.reflection_right = new ReflectionRight();
